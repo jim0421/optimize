@@ -8,9 +8,9 @@
  *        Version:  1.0
  *        Created:  2016年09月30日 13时33分00秒
  *       Revision:  none
- *       Compiler:  gcc
+ *       Compiler:  nvcc
  *
- *         Author:  YOUR NAME (), 
+ *         Author:  george, 
  *   Organization:  
  *
  * =====================================================================================
@@ -25,7 +25,7 @@ __global__ void fun(int * d_out,int *d_in){
 int main(){
 		const int ARRAY_SIZE = 96;
 		const size_t  ARRAY_BYTES = ARRAY_SIZE* sizeof(int);
-    int h_in[ARRAY_SIZE];
+    		int h_in[ARRAY_SIZE];
 		int h_out[ARRAY_SIZE];
 
 		for(int i=0;i<ARRAY_SIZE;i++){

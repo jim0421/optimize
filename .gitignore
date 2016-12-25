@@ -1,0 +1,7 @@
+# elf file
+*.o
+*.a
+*.exe
+*.bak
+note
+

